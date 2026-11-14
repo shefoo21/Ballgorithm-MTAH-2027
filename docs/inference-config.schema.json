@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MTAH provisional rule configuration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "control_distance_m": {
+      "type": "number",
+      "default": 2.0,
+      "unit": "m",
+      "description": "Maximum nearest distance for control",
+      "exclusiveMinimum": 0
+    },
+    "control_margin_m": {
+      "type": "number",
+      "default": 1.0,
+      "unit": "m",
+      "description": "Minimum opponent-minus-own nearest margin",
+      "exclusiveMinimum": 0
+    },
+    "support_radius_m": {
+      "type": "number",
+      "default": 3.0,
+      "unit": "m",
+      "description": "Required existing feature radius with support",
+      "exclusiveMinimum": 0
+    },
+    "nearest_weight": {
+      "type": "number",
+      "default": 0.75,
+      "unit": "fraction",
+      "description": "Nearest versus mean-k score weight",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "max_control_ball_speed_mps": {
+      "type": "number",
+      "default": 12.0,
+      "unit": "m/s",
+      "description": "Upper ball speed for new control",
+      "exclusiveMinimum": 0
+    },
+    "max_speed_disagreement_mps": {
+      "type": "number",
+      "default": 8.0,
+      "unit": "m/s",
+      "description": "Maximum reported/derived discrepancy",
+      "exclusiveMinimum": 0
+    },
+    "max_proximity_rate_mps": {
+      "type": "number",
+      "default": 10.0,
+      "unit": "m/s",
+      "description": "Maximum absolute team proximity rate",
+      "exclusiveMinimum": 0
+    },
+    "min_team_visibility": {
+      "type": "number",
+      "default": 0.25,
+      "unit": "fraction",
+      "description": "Required visible fraction of slots",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "control_min_confidence": {
+      "type": "number",
+      "default": 0.55,
+      "unit": "score",
+      "description": "Minimum control score",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "dead_min_confidence": {
+      "type": "number",
+      "default": 0.6,
+      "unit": "score",
+      "description": "Minimum dead-ball score",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "min_source_confidence": {
+      "type": "number",
+      "default": 0.3,
+      "unit": "score",
+      "description": "Minimum source reliability for entry",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "min_continuity_confidence": {
+      "type": "number",
+      "default": 0.2,
+      "unit": "score",
+      "description": "Minimum carried-state score",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "quality_absent_factor": {
+      "type": "number",
+      "default": 0.9,
+      "unit": "factor",
+      "description": "Reliability without calibration metadata",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "quality_invalid_factor": {
+      "type": "number",
+      "default": 0.2,
+      "unit": "factor",
+      "description": "Reliability when calibration unavailable",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "quality_error_scale": {
+      "type": "number",
+      "default": 10.0,
+      "unit": "export-defined",
+      "description": "Error scale in 1/(1+error/scale)",
+      "exclusiveMinimum": 0
+    },
+    "missing_motion_factor": {
+      "type": "number",
+      "default": 0.8,
+      "unit": "factor",
+      "description": "Reliability without derived ball motion",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "unreliable_motion_factor": {
+      "type": "number",
+      "default": 0.25,
+      "unit": "factor",
+      "description": "Reliability with invalid/disagreeing speed",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "coverage_change_factor": {
+      "type": "number",
+      "default": 0.75,
+      "unit": "factor",
+      "description": "Reliability when visible slot mask changes",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "tag_conflict_factor": {
+      "type": "number",
+      "default": 0.7,
+      "unit": "factor",
+      "description": "Reliability with opposing simultaneous tags",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "unknown_near_factor": {
+      "type": "number",
+      "default": 0.4,
+      "unit": "factor",
+      "description": "Reliability with an unknown-team nearby slot",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "acquire_confirm_s": {
+      "type": "number",
+      "default": 0.2,
+      "unit": "s",
+      "description": "Consecutive control support for initial owner",
+      "exclusiveMinimum": 0
+    },
+    "turnover_confirm_s": {
+      "type": "number",
+      "default": 0.4,
+      "unit": "s",
+      "description": "Consecutive opposing support to switch owner",
+      "exclusiveMinimum": 0
+    },
+    "dead_confirm_s": {
+      "type": "number",
+      "default": 0.6,
+      "unit": "s",
+      "description": "Consecutive corroborated stoppage support",
+      "exclusiveMinimum": 0
+    },
+    "restart_confirm_s": {
+      "type": "number",
+      "default": 0.2,
+      "unit": "s",
+      "description": "Consecutive control support after dead ball",
+      "exclusiveMinimum": 0
+    },
+    "missing_hold_s": {
+      "type": "number",
+      "default": 1.0,
+      "unit": "s",
+      "description": "Maximum unsupported owner age when ball missing",
+      "exclusiveMinimum": 0
+    },
+    "loose_hold_s": {
+      "type": "number",
+      "default": 2.0,
+      "unit": "s",
+      "description": "Maximum unsupported owner age otherwise",
+      "exclusiveMinimum": 0
+    },
+    "dead_hold_s": {
+      "type": "number",
+      "default": 3.0,
+      "unit": "s",
+      "description": "Maximum unsupported dead-state age",
+      "exclusiveMinimum": 0
+    },
+    "continuity_half_life_s": {
+      "type": "number",
+      "default": 1.5,
+      "unit": "s",
+      "description": "Half life of last directly supported confidence",
+      "exclusiveMinimum": 0
+    },
+    "stop_ball_speed_mps": {
+      "type": "number",
+      "default": 0.5,
+      "unit": "m/s",
+      "description": "Upper observed ball speed for stoppage",
+      "exclusiveMinimum": 0
+    },
+    "stop_team_speed_mps": {
+      "type": "number",
+      "default": 1.0,
+      "unit": "m/s",
+      "description": "Upper median speed of each team for stoppage",
+      "exclusiveMinimum": 0
+    },
+    "restart_speed_mps": {
+      "type": "number",
+      "default": 1.0,
+      "unit": "m/s",
+      "description": "Minimum ball speed during restart confirmation",
+      "exclusiveMinimum": 0
+    },
+    "set_piece_dead_factor": {
+      "type": "number",
+      "default": 0.75,
+      "unit": "factor",
+      "description": "Dead score factor for inside set-piece evidence",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    }
+  },
+  "description": "Synthetic-design assumptions. stop < restart <= maximum control speed."
+}

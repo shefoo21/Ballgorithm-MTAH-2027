@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MTAH offline temporal configuration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Provisional, uncalibrated. ceil(duration_s * fps) <= max_age_bins.",
+  "properties": {
+    "observation_weight": {
+      "default": 1.0,
+      "unit": "factor",
+      "description": "Linear observation cost weight",
+      "minimum": 1e-06,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "turnover_cost": {
+      "default": 0.12,
+      "unit": "cost",
+      "description": "H/A change base cost",
+      "minimum": 0,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "dead_entry_cost": {
+      "default": 0.12,
+      "unit": "cost",
+      "description": "H/A to corroborated D cost",
+      "minimum": 0,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "restart_cost": {
+      "default": 0.12,
+      "unit": "cost",
+      "description": "D to motion-supported H/A cost",
+      "minimum": 0,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "turnover_discount": {
+      "default": 0.8,
+      "unit": "fraction",
+      "description": "Evidence discount on every transition",
+      "minimum": 0,
+      "maximum": 1,
+      "type": "number"
+    },
+    "duration_s": {
+      "default": 0.4,
+      "unit": "s",
+      "description": "Dwell age at which soft exit penalty vanishes",
+      "minimum": 1e-06,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "short_exit_cost": {
+      "default": 0.08,
+      "unit": "cost",
+      "description": "Maximum soft early-exit penalty",
+      "minimum": 0,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "min_source_confidence": {
+      "default": 0.3,
+      "unit": "score",
+      "description": "Minimum reliable source",
+      "minimum": 1e-06,
+      "maximum": 1,
+      "type": "number"
+    },
+    "min_support": {
+      "default": 0.55,
+      "unit": "score",
+      "description": "Minimum score of a flagged direct candidate",
+      "minimum": 1e-06,
+      "maximum": 1,
+      "type": "number"
+    },
+    "min_confidence": {
+      "default": 0.2,
+      "unit": "score",
+      "description": "Minimum emitted reliability",
+      "minimum": 1e-06,
+      "maximum": 1,
+      "type": "number"
+    },
+    "max_unsupported_s": {
+      "default": 1.0,
+      "unit": "s",
+      "description": "Maximum time since any direct anchor before reset",
+      "minimum": 0,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "continuity_half_life_s": {
+      "default": 1.5,
+      "unit": "s",
+      "description": "Decay of last selected direct support",
+      "minimum": 1e-06,
+      "maximum": 1000000.0,
+      "type": "number"
+    },
+    "max_segment_frames": {
+      "default": 200000,
+      "unit": "frames",
+      "description": "Maximum buffered evidence island",
+      "minimum": 1,
+      "maximum": 1000000,
+      "type": "integer"
+    },
+    "max_age_bins": {
+      "default": 64,
+      "unit": "bins",
+      "description": "Reject dwell discretization larger than this",
+      "minimum": 1,
+      "maximum": 256,
+      "type": "integer"
+    },
+    "max_backpointer_bytes": {
+      "default": 67108864,
+      "unit": "bytes",
+      "description": "Maximum traceback array allocation",
+      "minimum": 1,
+      "maximum": 536870912,
+      "type": "integer"
+    }
+  }
+}

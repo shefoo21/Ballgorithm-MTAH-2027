@@ -1,0 +1,66 @@
+# PUBLIC TEMPLATE ONLY. Make a private copy outside public Git and edit it locally.
+# Never paste the completed config, match files, predictions or reports into the assistant.
+schema_version = 1
+profile = "phase1"
+dataset_root = "C:/CHANGE_ME_MATCH_INPUT_ROOT"
+output_root = "C:/CHANGE_ME_PRIVATE_RUNS_OUTSIDE_DATASET"
+frame_count = 199319
+track_slots = 46
+
+[assets]
+# Paths relative to dataset_root; use actual local names without moving originals.
+metadata = "CHANGE_ME_tactical_atd.xml"
+tracking = "CHANGE_ME_tactical_atd.txt"
+# Final Version B omits homography and Smart Tagging. Leave both asset keys absent.
+# homography = "CHANGE_ME_tactical_homography.csv"
+# smart_tagging = "CHANGE_ME_tactical_smart_tagging.xml"
+
+[teams]
+# Exact metadata Team IDs; never infer home/away from XML order or slot identity.
+home_id = "CHANGE_ME_HOME_TEAM_ID"
+away_id = "CHANGE_ME_AWAY_TEAM_ID"
+# Required by the config schema but unused while smart_tagging is absent.
+# For a NEW organizer config use distinct nonempty neutral aliases, not N/A/NA/unknown.
+# No Smart Tagging file is needed to populate these unused fields.
+tag_home = "CHANGE_ME_HOME_TAG_NAME"
+tag_away = "CHANGE_ME_AWAY_TAG_NAME"
+
+[features]
+# These values match the owner-confirmed final Version B settings.
+# Preserve the accepted private configuration; populate only a NEW organizer copy.
+pitch_length_m = 105.0
+pitch_width_m = 68.0
+fps = 25.0
+proximity_radii_m = [1.0, 3.0, 5.0]
+nearest_k = 3
+
+[[features.periods]]
+period_id = 1
+start = 11185
+stop = 90652
+
+[[features.periods]]
+period_id = 2
+start = 110808
+stop = 190198
+
+[rules]
+# Empty table uses the frozen Milestone 2 provisional defaults. Effective values are
+# recorded in each local manifest. Do not select overrides from match prediction quality.
+
+[diagnostics]
+# Operational alerts only; none modifies inference or claims statistical abnormality.
+short_fragment_s = 1.0
+max_short_fragment_fraction = 0.5
+max_abstention_fraction = 0.5
+
+[provenance]
+parameter_basis = "provisional"
+reference = "Milestone 2 frozen synthetic-design defaults; numerical external calibration outstanding"
+
+# Version B selection. The library default remains Version A.
+[inference]
+mode = "rules_temporal"
+
+[temporal]
+# Empty table uses all frozen defaults; see ARCHITECTURE.md. Never tune on this match.
